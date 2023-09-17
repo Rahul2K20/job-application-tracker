@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Job Applications</h1>
+<ul>
+    {% for job in job_applications %}
+    <li>{{ job.company }} - {{ job.position }} - {{date_applied}} - {{ job.status }} - {{job.notes}}</li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('add') }}">Add New Application</a>
+{% endblock %}
+
+

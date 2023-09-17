@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add New Job Application</h1>
+<form action="{{ url_for('add') }}" method="post">
+    Company: <input type="text" name="company" required><br>
+    Position: <input type="text" name="position" required><br>
+    Date Applied: <input type="text" name="date_applied" required><br>
+    status: <input type="text" name="status" required><br>
+    Notes: <textarea name="notes"></textarea><br>
+    <input type="submit" value="Add">
+</form>
+{% endblock %}
