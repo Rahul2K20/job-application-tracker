@@ -10,6 +10,7 @@
 
 ## Features 🌟
 
+- **Regier/Login:** Register to create your own account and gain access to your personalized job application list
 - **Add Job Applications:** Quickly add new applications to the list.
 - **Update Entries:** Easily update any existing entry with new information.
 - **Delete Applications:** Remove applications from the list when they're no longer needed.
