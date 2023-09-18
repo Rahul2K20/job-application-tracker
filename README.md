@@ -46,7 +46,7 @@
 
 - **Backend:** Flask
 - **Frontend:** HTML, CSS, Bootstrap, Font Awesome
-- **Database:** SQLite (or whatever you're using)
+- **Database:** SQLite 
 
 ---
 
