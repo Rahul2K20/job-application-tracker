@@ -4,6 +4,14 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
 from app.models import JobApplication, User
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import make_response
+
+@app.after_request
+def add_cache_control(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 @app.context_processor
 def make_template_context():
