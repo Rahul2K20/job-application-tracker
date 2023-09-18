@@ -4,6 +4,19 @@
 <h1 class="mt-4">Job Applications</h1>
 
 {% if job_applications|length > 0 %}
+    
+    <div class="mb-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort By
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                <li><a class="dropdown-item {{ 'active' if request.args.get('sort_by') == 'company' else '' }}" href="{{ url_for('index', sort_by='company') }}">Company Name</a></li>
+                <li><a class="dropdown-item {{ 'active' if request.args.get('sort_by') == 'date' else '' }}" href="{{ url_for('index', sort_by='date') }}">Date Applied</a></li>
+            </ul>
+        </div>
+    </div>
+
     <table class="table table-striped mt-3">
         <thead>
             <tr>
@@ -37,6 +50,7 @@
             {% endfor %}
         </tbody>
     </table>
+
 {% else %}
     <div class="alert alert-info mt-3">
         No job applications found.

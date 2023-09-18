@@ -4,7 +4,15 @@ from app.models import JobApplication
 
 @app.route('/')
 def index():
-    job_applications = JobApplication.query.all()
+    sort_by = request.args.get('sort_by')
+    
+    if sort_by == "company":
+        job_applications = JobApplication.query.order_by(JobApplication.company).all()
+    elif sort_by == "date":
+        job_applications = JobApplication.query.order_by(JobApplication.date_applied.desc()).all()
+    else:
+        job_applications = JobApplication.query.all()  
+
     return render_template('index.html', job_applications=job_applications)
 
 @app.route('/add', methods=['POST', 'GET'])
@@ -45,5 +53,7 @@ def delete(id):
     db.session.delete(job_application)
     db.session.commit()
     return redirect(url_for('index'))
+
+
 
 
