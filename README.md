@@ -1,8 +1,6 @@
 # Job Application Tracker 📝
 
 <div align="center">
-    <img src="![image](https://github.com/Rahul2K20/job-application-tracker/assets/63788480/768abed4-2ff5-45c1-a3f0-e4f19c72a107)
-" alt="Application Tracker Logo" width="200">
     <br>
     <strong>Keep track of all your job applications in one place!</strong>
     <br>
@@ -54,7 +52,8 @@
 
 ## Screenshots 🖼
 
-![Homepage](link-to-your-homepage-screenshot.png)
+![Homepage](![image](https://github.com/Rahul2K20/job-application-tracker/assets/63788480/13feb612-78cd-40e9-a3c1-5c18d767aad7)
+)
 
 ---
 
