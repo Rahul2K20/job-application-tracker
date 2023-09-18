@@ -1,5 +1,4 @@
 from flask import Flask
-from app import routes
 import os
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,6 +9,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'a
 
 db = SQLAlchemy(app)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+from app import routes

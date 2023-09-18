@@ -22,3 +22,28 @@ def add():
 
         return redirect(url_for('index'))
     return render_template('add.html')
+
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
+def update(id):
+    job_application = JobApplication.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        job_application.company = request.form['company']
+        job_application.position = request.form['position']
+        job_application.date_applied = request.form['date_applied']
+        job_application.status = request.form['status']
+        job_application.notes = request.form.get('notes', '')
+        
+        db.session.commit()
+        return redirect(url_for('index'))
+    
+    return render_template('update.html', job_application=job_application)
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    job_application = JobApplication.query.get_or_404(id)
+    db.session.delete(job_application)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+

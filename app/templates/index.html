@@ -1,13 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Job Applications</h1>
-<ul>
-    {% for job in job_applications %}
-    <li>{{ job.company }} - {{ job.position }} - {{date_applied}} - {{ job.status }} - {{job.notes}}</li>
-    {% endfor %}
-</ul>
-<a href="{{ url_for('add') }}">Add New Application</a>
+<h1 class="mt-4">Job Applications</h1>
+
+{% if job_applications|length > 0 %}
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in job_applications %}
+            <tr>
+                <td>{{ job.company }}</td>
+                <td>{{ job.position }}</td>
+                <td>{{ job.date_applied }}</td>
+                <td>{{ job.status }}</td>
+                <td>{{ job.notes }}</td>
+                <td>
+                    <a href="{{ url_for('update', id=job.id) }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-edit"></i> Update
+                    </a>
+                    <form action="{{ url_for('delete', id=job.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-info mt-3">
+        No job applications found.
+    </div>
+{% endif %}
+
+<a href="{{ url_for('add') }}" class="btn btn-success mt-3">
+    <i class="fas fa-plus-circle"></i> Add New Application
+</a>
 {% endblock %}
-
-
