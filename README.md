@@ -1,7 +1,8 @@
 # Job Application Tracker 📝
 
 <div align="center">
-    <img src="your-image-link-here.png" alt="Application Tracker Logo" width="200">
+    <img src="![image](https://github.com/Rahul2K20/job-application-tracker/assets/63788480/768abed4-2ff5-45c1-a3f0-e4f19c72a107)
+" alt="Application Tracker Logo" width="200">
     <br>
     <strong>Keep track of all your job applications in one place!</strong>
     <br>
@@ -22,7 +23,7 @@
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone [https://github.com/Rahul2K20/job-application-tracker.git]
     ```
 
 2. Navigate to the project directory and install the required packages:
@@ -33,7 +34,7 @@
 
 3. Set your Flask app environment variable:
     ```bash
-    export FLASK_APP=your-app-entry-file.py
+    export FLASK_APP=run.py
     ```
 
 4. Run the Flask application:
