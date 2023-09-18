@@ -52,7 +52,7 @@
 
 ## Screenshots 🖼
 
-![Homepage](![image](https://github.com/Rahul2K20/job-application-tracker/assets/63788480/13feb612-78cd-40e9-a3c1-5c18d767aad7)
+![Homepage](![image](https://i.ibb.co/sgTJDvc/home.png)
 )
 
 ---
