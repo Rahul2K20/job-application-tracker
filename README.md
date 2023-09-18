@@ -52,8 +52,7 @@
 
 ## Screenshots 🖼
 
-![Homepage](![image](https://i.ibb.co/sgTJDvc/home.png)
-)
+![Homepage](https://i.ibb.co/sgTJDvc/home.png)
 
 ---
 
