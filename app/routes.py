@@ -19,10 +19,22 @@ def make_template_context():
 
 @app.route('/')
 def index():
+    page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'date')
+    
     job_applications = []
     if current_user.is_authenticated:
-        job_applications = JobApplication.query.filter_by(user_id=current_user.id).all()
+        query = JobApplication.query.filter_by(user_id=current_user.id)
+        
+        if sort_by == 'company':
+            query = query.order_by(JobApplication.company)
+        else:
+            query = query.order_by(JobApplication.date_applied.desc())
+            
+        job_applications = query.paginate(page=page, per_page=9)
+    
     return render_template('index.html', job_applications=job_applications)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -69,10 +81,11 @@ def logout():
     flash('Logged out successfully.', 'alert-success-popup')
     return redirect(url_for('login'))
 
-@app.route('/add', methods=['POST', 'GET'])
 @login_required
+@app.route('/add', methods=['GET', 'POST'])
 def add():
     user_id = current_user.id
+    page = request.args.get('page', 1, type=int)
 
     if request.method == 'POST':
         company = request.form['company']
@@ -85,10 +98,17 @@ def add():
         db.session.add(new_application)
         db.session.commit()
 
+        total_items = JobApplication.query.filter_by(user_id=current_user.id).count()
+        
+      
+        page = (total_items + 8) // 9 
+
         flash('Job application added successfully.', 'alert-success-popup')
-        return redirect(url_for('index'))
+        return redirect(url_for('index', page=page))
 
     return render_template('add.html')
+
+
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
 @login_required
@@ -109,12 +129,24 @@ def update(id):
 
     return render_template('update.html', job_application=job_application)
 
-@app.route('/delete/<int:id>', methods=['POST'])
 @login_required
+@app.route('/delete/<int:id>', methods=['POST'])
 def delete(id):
+    page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'date')
     job_application = JobApplication.query.get_or_404(id)
+
     db.session.delete(job_application)
     db.session.commit()
 
+    total_remaining = JobApplication.query.filter_by(user_id=current_user.id).count()
+    total_pages = -(-total_remaining // 9)  
+
+    if page > total_pages:
+        page = total_pages if total_pages else 1
+
     flash('Job application deleted successfully.', 'alert-success-popup')
-    return redirect(url_for('index'))
+    return redirect(url_for('index', page=page, sort_by=sort_by))
+
+
+
